@@ -1,23 +1,29 @@
-// Lección 14. Template string
+// Lección 13. Objetos literales
 
-const nombre = 'Víctor Hugo';
-const apellido = 'Vázquez Gómez';
+const persona = {
+    nombre: 'Nicole',
+    apellido: 'Rodríguez',
+    edad: 20,
+    direccion: {
+        ciudad: "H. Matamoros",
+        zip: 87470,
+        lat: 12.123,
+        lng: 233.2132,
+    },
+};
 
-// Si quisiera concatenar las dos constantes para crear el nombre completo
-// normalmente en javascript base se escribiría de la siguiente manera:
+// console.table({persona});
+console.log(persona);
 
-const nombreCompleto = nombre + ' ' + apellido;
+// ¡¡¡¡¡¡ESTO NO SE HACE!!!!!!
+// const persona2 = persona;
+// persona2.nombre = 'Víctor';
 
-console.log(nombreCompleto);
+// console.log( persona2 );
 
-// uno de los usos de los template strings es no tener que concatenar,
-// usualmente se realiza de la siguiente manera
-const nombreCompletoTS = `${ nombre } ${ apellido } has ${nombreCompleto.length} letters`;
+// Para eso usa el spread de JavaScript (...)
+const persona2 = {...persona};
+persona2.nombre = 'Víctor';
 
-console.log(nombreCompletoTS);
-
-function getSaludo(nombre) {
-    return 'Hola ' + nombre;
-}
-
-console.log(`Este es un texto: ${ getSaludo('Keko') }`);
+console.log( persona2 );
+console.log( persona );
