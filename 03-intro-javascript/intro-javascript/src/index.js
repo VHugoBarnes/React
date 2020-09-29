@@ -1,16 +1,23 @@
-// Lección 13. Variables y constantes
+// Lección 14. Template string
 
-const nombre = 'Víctor';
+const nombre = 'Víctor Hugo';
+const apellido = 'Vázquez Gómez';
 
-let apellido = 'Vázquez';
-let valorDado = 4;
+// Si quisiera concatenar las dos constantes para crear el nombre completo
+// normalmente en javascript base se escribiría de la siguiente manera:
 
-console.log(nombre, apellido, valorDado);
+const nombreCompleto = nombre + ' ' + apellido;
 
-if (true) {
-    valorDado = 6;
+console.log(nombreCompleto);
 
-    console.log(valorDado);
+// uno de los usos de los template strings es no tener que concatenar,
+// usualmente se realiza de la siguiente manera
+const nombreCompletoTS = `${ nombre } ${ apellido } has ${nombreCompleto.length} letters`;
+
+console.log(nombreCompletoTS);
+
+function getSaludo(nombre) {
+    return 'Hola ' + nombre;
 }
 
-console.log(valorDado);
+console.log(`Este es un texto: ${ getSaludo('Keko') }`);
