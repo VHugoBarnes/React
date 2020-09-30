@@ -1,26 +1,62 @@
-// Lección 16. Arreglos
+// Lección 17. Funciones
 
-// esta no es la mejor manera de declarar y usar arreglos en JS.
-// esta sintaxis sólo se usa para declarar un array con un tamaño fijo entre comillas.
-//const arreglo = new Array();
+function saludar(nombre) {
+    return `Hola, ${nombre}`;
+}
 
-// esta es la opción más óptima para declarar un arreglo
-const arreglo = [1,2,3,4];
-console.log(arreglo);
+// No es muy recomendable escribir funciones de la manera anterior,
+// para ello, la versión más óptima es escribir una constante para no
+// sobreescribir el nombre de la función por error.
 
-const arreglo2 = [...arreglo, 5];
-// arreglo2.push(5);
+const saludo = function(nombre) {
+    return `Hola, ${nombre}`;
+}
 
-/*
-El método **map()** crea un nuevo array con los resultados de la llamada a la función
-indicada aplicados a cada uno de sus elementos
-*/
+// funciones de flecha (lambda functions)
+const saludo2 = (nombre) => {
+    return `Hola, ${nombre}`;
+}
 
-const arreglo3 = arreglo2.map(function(numero){
-    return Math.pow(numero, numero);
+// cuando lo único que tiene la función es una línea podemos hacer esto:
+const saludo3 = (nombre) => `Hola, ${nombre}`
+const saludo4 = () => `Hola mundo`;
+
+console.log(saludar('Keko'));
+console.log(saludo('Reba'));
+console.log(saludo2('Malia'));
+console.log(saludo3('Nicole'));
+console.log(saludo4());
+
+// Ahora vamos a convertir esta arrow function a algo más simple
+const getUser1 = () => {
+    return {
+        uid: 'ABC123',
+        username: 'KekoKaka12',
+
+    }
+};
+
+// para simplificar la expresión usamos los parentesís, eso quiere decir que vamos a devolver un 
+// objeto
+// ESTO SE LLAMA CREAR UN OBJETO IMPLÍCITO
+const getUser2 = () =>
+    ({
+        uid: 'DEF456',
+        username: 'MaliaKaka12',
+    });
+
+console.log(getUser1());
+console.log(getUser2());
+
+// Tarea
+// 1. Transformar a arrow function
+// 2. Tiene que retornar un objeto implícito
+// 3. Pruebas
+const getUsuarioActivo = (nombre) => 
+({
+        uid: 'ABC123',
+        username: nombre,
 });
 
-console.log(arreglo);
-console.log(arreglo2);
-console.log(arreglo3);
-console.log(arreglo2);
+const usuarioActivo = getUsuarioActivo('Víctor');
+console.log(usuarioActivo);
