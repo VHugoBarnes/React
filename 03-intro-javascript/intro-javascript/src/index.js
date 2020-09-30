@@ -1,45 +1,34 @@
-// Lección 18. Desestructuración de objetos
+// Lección 19. Desestructuración de arreglos
 
-const persona = {
-    nombre: 'Tony',
-    edad: 45,
-    clave: 'ironman',
-    rango: 'Soldado'
-};
+const personajes = ['Michael', 'Dwight', 'Pam', 'Jim', 'Erin'];
 
-// Comienza la desestructuración con esta sintaxis
-const {nombre} = persona
+// Esto puede funcionar, pero es muy tedioso hacerlo.
+// console.log(personajes[4]);
+// console.log(personajes[2]);
+// console.log(personajes[1]);
 
-console.log(nombre);
+// Desestructuramos los arrays de la siguiente manera:
+const [,,,,p5] = personajes;
 
-// Veamos, si tenemos una variable con el mismo nombre del
-// atributo al que queremos acceder del objeto nos marcaría error
-// en estas situaciones podemos hacer esto:
-const edad = 21;
+console.log(p5);
 
-const {edad:edadPersona} = persona;
-
-console.log(edadPersona);
-console.log(edad);
-
-
-// console.log(persona.edad);
-// console.log(persona.clave);
-
-// Desestructuración en los parámetros de una función
-const useContext = ({clave, nombre, edad, rango='Capitán'}) => {
-    
-    // console.log(nombre, edad, rango);
-    return {
-        nombreClave: clave,
-        anios: edad,
-        latlng: {
-            lat: 14.3113,
-            lng: 33.1222,
-        }
-    }
-    
+// para una función...
+const retornaArreglo = () => {
+    return ['ABC', 123];
 }
 
-const {nombreClave, anios, latlng:{lat, lng}} = useContext(persona);
-console.log(nombreClave, anios, lat, lng);
+const [letras, numeros] = retornaArreglo();
+
+console.log(letras);
+console.log(numeros);
+
+// Tarea
+// 1. El primer valor del arreglo se llamará nombre.
+// 2. El segundo se llamará setNombre.
+const useState = (valor) => {
+    return [valor, ()=>{ console.log('Hola mundo') }];
+}
+
+const [nombre, setNombre] = useState('Ellie');
+console.log(nombre);
+setNombre();
