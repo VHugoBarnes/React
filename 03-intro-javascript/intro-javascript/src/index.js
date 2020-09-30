@@ -1,62 +1,45 @@
-// Lección 17. Funciones
+// Lección 18. Desestructuración de objetos
 
-function saludar(nombre) {
-    return `Hola, ${nombre}`;
-}
-
-// No es muy recomendable escribir funciones de la manera anterior,
-// para ello, la versión más óptima es escribir una constante para no
-// sobreescribir el nombre de la función por error.
-
-const saludo = function(nombre) {
-    return `Hola, ${nombre}`;
-}
-
-// funciones de flecha (lambda functions)
-const saludo2 = (nombre) => {
-    return `Hola, ${nombre}`;
-}
-
-// cuando lo único que tiene la función es una línea podemos hacer esto:
-const saludo3 = (nombre) => `Hola, ${nombre}`
-const saludo4 = () => `Hola mundo`;
-
-console.log(saludar('Keko'));
-console.log(saludo('Reba'));
-console.log(saludo2('Malia'));
-console.log(saludo3('Nicole'));
-console.log(saludo4());
-
-// Ahora vamos a convertir esta arrow function a algo más simple
-const getUser1 = () => {
-    return {
-        uid: 'ABC123',
-        username: 'KekoKaka12',
-
-    }
+const persona = {
+    nombre: 'Tony',
+    edad: 45,
+    clave: 'ironman',
+    rango: 'Soldado'
 };
 
-// para simplificar la expresión usamos los parentesís, eso quiere decir que vamos a devolver un 
-// objeto
-// ESTO SE LLAMA CREAR UN OBJETO IMPLÍCITO
-const getUser2 = () =>
-    ({
-        uid: 'DEF456',
-        username: 'MaliaKaka12',
-    });
+// Comienza la desestructuración con esta sintaxis
+const {nombre} = persona
 
-console.log(getUser1());
-console.log(getUser2());
+console.log(nombre);
 
-// Tarea
-// 1. Transformar a arrow function
-// 2. Tiene que retornar un objeto implícito
-// 3. Pruebas
-const getUsuarioActivo = (nombre) => 
-({
-        uid: 'ABC123',
-        username: nombre,
-});
+// Veamos, si tenemos una variable con el mismo nombre del
+// atributo al que queremos acceder del objeto nos marcaría error
+// en estas situaciones podemos hacer esto:
+const edad = 21;
 
-const usuarioActivo = getUsuarioActivo('Víctor');
-console.log(usuarioActivo);
+const {edad:edadPersona} = persona;
+
+console.log(edadPersona);
+console.log(edad);
+
+
+// console.log(persona.edad);
+// console.log(persona.clave);
+
+// Desestructuración en los parámetros de una función
+const useContext = ({clave, nombre, edad, rango='Capitán'}) => {
+    
+    // console.log(nombre, edad, rango);
+    return {
+        nombreClave: clave,
+        anios: edad,
+        latlng: {
+            lat: 14.3113,
+            lng: 33.1222,
+        }
+    }
+    
+}
+
+const {nombreClave, anios, latlng:{lat, lng}} = useContext(persona);
+console.log(nombreClave, anios, lat, lng);
