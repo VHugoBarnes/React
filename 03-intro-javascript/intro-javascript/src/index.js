@@ -1,29 +1,26 @@
-// Lección 13. Objetos literales
+// Lección 16. Arreglos
 
-const persona = {
-    nombre: 'Nicole',
-    apellido: 'Rodríguez',
-    edad: 20,
-    direccion: {
-        ciudad: "H. Matamoros",
-        zip: 87470,
-        lat: 12.123,
-        lng: 233.2132,
-    },
-};
+// esta no es la mejor manera de declarar y usar arreglos en JS.
+// esta sintaxis sólo se usa para declarar un array con un tamaño fijo entre comillas.
+//const arreglo = new Array();
 
-// console.table({persona});
-console.log(persona);
+// esta es la opción más óptima para declarar un arreglo
+const arreglo = [1,2,3,4];
+console.log(arreglo);
 
-// ¡¡¡¡¡¡ESTO NO SE HACE!!!!!!
-// const persona2 = persona;
-// persona2.nombre = 'Víctor';
+const arreglo2 = [...arreglo, 5];
+// arreglo2.push(5);
 
-// console.log( persona2 );
+/*
+El método **map()** crea un nuevo array con los resultados de la llamada a la función
+indicada aplicados a cada uno de sus elementos
+*/
 
-// Para eso usa el spread de JavaScript (...)
-const persona2 = {...persona};
-persona2.nombre = 'Víctor';
+const arreglo3 = arreglo2.map(function(numero){
+    return Math.pow(numero, numero);
+});
 
-console.log( persona2 );
-console.log( persona );
+console.log(arreglo);
+console.log(arreglo2);
+console.log(arreglo3);
+console.log(arreglo2);
