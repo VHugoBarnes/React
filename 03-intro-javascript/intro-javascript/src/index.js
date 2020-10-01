@@ -1,34 +1,28 @@
-// Lección 19. Desestructuración de arreglos
+// Lección 20. Import, Export y funciones comunes de arreglos
+// Lección 21. Múltiples exportaciones y exportaciones por defecto
 
-const personajes = ['Michael', 'Dwight', 'Pam', 'Jim', 'Erin'];
+import heroes, {owners} from './data/heroes';
 
-// Esto puede funcionar, pero es muy tedioso hacerlo.
-// console.log(personajes[4]);
-// console.log(personajes[2]);
-// console.log(personajes[1]);
+console.log(owners)
 
-// Desestructuramos los arrays de la siguiente manera:
-const [,,,,p5] = personajes;
+// import { heroes } from './data/heroes';
+// import {heroes} from './data/heroes';
 
-console.log(p5);
 
-// para una función...
-const retornaArreglo = () => {
-    return ['ABC', 123];
-}
+// console.log(heroes);
 
-const [letras, numeros] = retornaArreglo();
+// const getHeroeById = (id) => {
+//     return heroes.find( ( heroe ) => {
+//         if ( heroe.id === id ) {
+//             return true;
+//         }else{
+//             return false;
+//         }
+//     });
+// };
 
-console.log(letras);
-console.log(numeros);
+const getHeroeById = (id) => heroes.find( ( heroe ) => heroe.id === id);
+console.log(getHeroeById(2));
 
-// Tarea
-// 1. El primer valor del arreglo se llamará nombre.
-// 2. El segundo se llamará setNombre.
-const useState = (valor) => {
-    return [valor, ()=>{ console.log('Hola mundo') }];
-}
-
-const [nombre, setNombre] = useState('Ellie');
-console.log(nombre);
-setNombre();
+const getHeroeByOwner = (owner) => heroes.filter((heroe) => heroe.owner === owner);
+console.log(getHeroeByOwner('DC'));
