@@ -1,49 +1,17 @@
-// Lección 22. Promesas
+// Lección 23. Fetch API
 
-import { getHeroeById } from './datos';
+const apiKey = '69P2JB6qo3viyWDvHpnvtSyvEGFzNfzb';
 
-// const promesa = new Promise(( resolve, reject ) => {
+const peticion = fetch(`http://api.giphy.com/v1/gifs/random?api_key=${apiKey}`);
 
-//     setTimeout( () => {
-//         // console.log('2 segundos después');
-//         // resolve();
-
-//         // Tarea
-//         const heroe = getHeroeById(2);
-//         // console.log(heroe);
-//         // reject('No se pudo encontrar al heroe');
-//         resolve('No se pudo encontrar al heroe');
+peticion
+    .then(resp => resp.json())
+    .then(({data}) => {
+        const {url} = data.images.original;
         
-//     }, 2000);
+        const img = document.createElement('img');
+        img.src = url;
 
-// });
-
-// promesa.then( (heroe) => {
-//     console.log(heroe.name);
-// })
-// .catch(err => console.warn(err));
-
-const getHeroeByIdAsync = (id) => {
-
-    const promesa = new Promise(( resolve, reject ) => {
-
-        setTimeout( () => {
-
-         const heroe = getHeroeById(id);         
-         if (heroe) {
-             resolve(heroe);
-         } else {
-             reject('No se pudo encontrar al heroe');
-         }
-        
-        }, 2000);
-
-    });
-
-    return promesa;
-
-};
-
-getHeroeByIdAsync(1)
-    .then(console.log)
+        document.body.append(img)
+    })
     .catch(console.warn);
