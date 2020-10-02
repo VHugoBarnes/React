@@ -1,28 +1,49 @@
-// Lección 20. Import, Export y funciones comunes de arreglos
-// Lección 21. Múltiples exportaciones y exportaciones por defecto
+// Lección 22. Promesas
 
-import heroes, {owners} from './data/heroes';
+import { getHeroeById } from './datos';
 
-console.log(owners)
+// const promesa = new Promise(( resolve, reject ) => {
 
-// import { heroes } from './data/heroes';
-// import {heroes} from './data/heroes';
+//     setTimeout( () => {
+//         // console.log('2 segundos después');
+//         // resolve();
 
+//         // Tarea
+//         const heroe = getHeroeById(2);
+//         // console.log(heroe);
+//         // reject('No se pudo encontrar al heroe');
+//         resolve('No se pudo encontrar al heroe');
+        
+//     }, 2000);
 
-// console.log(heroes);
+// });
 
-// const getHeroeById = (id) => {
-//     return heroes.find( ( heroe ) => {
-//         if ( heroe.id === id ) {
-//             return true;
-//         }else{
-//             return false;
-//         }
-//     });
-// };
+// promesa.then( (heroe) => {
+//     console.log(heroe.name);
+// })
+// .catch(err => console.warn(err));
 
-const getHeroeById = (id) => heroes.find( ( heroe ) => heroe.id === id);
-console.log(getHeroeById(2));
+const getHeroeByIdAsync = (id) => {
 
-const getHeroeByOwner = (owner) => heroes.filter((heroe) => heroe.owner === owner);
-console.log(getHeroeByOwner('DC'));
+    const promesa = new Promise(( resolve, reject ) => {
+
+        setTimeout( () => {
+
+         const heroe = getHeroeById(id);         
+         if (heroe) {
+             resolve(heroe);
+         } else {
+             reject('No se pudo encontrar al heroe');
+         }
+        
+        }, 2000);
+
+    });
+
+    return promesa;
+
+};
+
+getHeroeByIdAsync(1)
+    .then(console.log)
+    .catch(console.warn);
