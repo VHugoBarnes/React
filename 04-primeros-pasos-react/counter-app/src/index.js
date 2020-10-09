@@ -1,4 +1,4 @@
-// Lección 41. Componente CounterApp
+// Lección 43. useState Hook
 
 import React from 'react';
 import ReactDOM from 'react-dom';
