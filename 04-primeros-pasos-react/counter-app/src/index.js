@@ -1,4 +1,4 @@
-// Lección 36. Retornar elementos en el componente - Fragment
+// Lección 37. Impresión de variables en el HTML
 
 import React from 'react';
 import ReactDOM from 'react-dom';

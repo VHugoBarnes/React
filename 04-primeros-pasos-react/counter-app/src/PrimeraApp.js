@@ -1,4 +1,4 @@
-// Lección 36. Retornar elementos en el componente - Fragment
+// Lección 37. Impresión de variables en el HTML
 // Functional component
 
 import React from 'react';
@@ -9,9 +9,17 @@ import React from 'react';
 // necesitas de importar la desestructuración de Fragment.
 
 const PrimeraApp = () => {
+
+    const saludo = 'Hola, Nicole';
+    // const saludo = {
+    //     nombre: 'Víctor',
+    //     edad: 21
+    // }
+
     return (
         <>
-            <h1>Hola Mundo</h1>
+            <h1>{ saludo }</h1>
+            {/* <pre>{ JSON.stringify(saludo, null, 3) }</pre> */}
             <p>Mi primera aplicación en React</p>
         </>
     );
