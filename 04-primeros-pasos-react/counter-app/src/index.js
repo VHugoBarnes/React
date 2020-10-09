@@ -1,4 +1,4 @@
-// Lección 37. Impresión de variables en el HTML
+// Lección 38. Comunicación entre componentes - Props
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -9,4 +9,4 @@ import './index.css';
 
 const divRoot = document.querySelector('#root');
 
-ReactDOM.render( <PrimeraApp />, divRoot );
+ReactDOM.render( <PrimeraApp saludo="Hola Keko Kaka" />, divRoot );
