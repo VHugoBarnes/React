@@ -1,4 +1,4 @@
-// Lección 35. Nuestro primer componente
+// Lección 36. Retornar elementos en el componente - Fragment
 
 import React from 'react';
 import ReactDOM from 'react-dom';
