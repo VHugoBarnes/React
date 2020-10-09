@@ -1,4 +1,4 @@
-// Lección 43. useState Hook
+// Lección 44. handleSubtract y handleReset
 
 import React from 'react';
 import ReactDOM from 'react-dom';

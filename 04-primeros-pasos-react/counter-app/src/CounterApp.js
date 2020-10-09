@@ -28,7 +28,17 @@ const CounterApp = ({ value }) => {
      * cuando se sale de la función, pero las variables de estado son conservadas por React.
      * 
      * ¿Qué pasamos a `useState` como argumento?
-     * El único argumento para el Hook `useState()` es el estado inicial.
+     * El único argumento para el Hook `useState()` es el estado inicial. Al contrario que
+     * en las clases. el estado no tiene por qué ser un objeto. Podemos usar números o strings
+     * si es todo lo que necesitamos. En nuestro ejemplo, solamente queremos un número para contar 
+     * el número de clics del usuario, por eso pasamos `0` como estado inicial a nuestra 
+     * variable. (Si queremos guardar dos valores distintos en el estado, llamaríamos a `useState()
+     * dos veces).
+     * 
+     * ¿Qué devuelve `useState`?
+     * Devuelve una pareja de valores: el estado actual, y una función que lo actualiza.
+     * Por eso escribimos `const [count, setCount] = useState()`. Esto es similar a 
+     * `this.state.count` y `this.setState` en una clase, excepto que se obtienen juntos.
      */
     const [counter, setCounter] = useState(0);
 
