@@ -1,9 +1,15 @@
-// Lección 38. Comunicación entre componentes - Props
+// Lección 39. PropTypes
+
+/*
+Para usar verificación de tipos en las props de un componente, 
+puedes asignar la propiedad especial PropTypes:
+*/
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
-const PrimeraApp = ( {saludo='Hola Mundo'} ) => {
+const PrimeraApp = ( {saludo} ) => {
 
     return (
         <>
@@ -12,5 +18,11 @@ const PrimeraApp = ( {saludo='Hola Mundo'} ) => {
         </>
     );
 };
+
+// Con esto obligamos a otros desarrolladores a que 
+// trabajen cómo queremos con nuestros componentes
+PrimeraApp.propTypes = {
+    saludo: PropTypes.string.isRequired,
+}
 
 export default PrimeraApp;

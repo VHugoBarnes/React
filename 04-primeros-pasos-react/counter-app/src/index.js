@@ -1,4 +1,4 @@
-// Lección 38. Comunicación entre componentes - Props
+// Lección 39. PropTypes
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -9,4 +9,5 @@ import './index.css';
 
 const divRoot = document.querySelector('#root');
 
-ReactDOM.render( <PrimeraApp saludo="Hola Keko Kaka" />, divRoot );
+// ReactDOM.render( <PrimeraApp saludo="Hola Keko Kaka" />, divRoot );
+ReactDOM.render( <PrimeraApp />, divRoot );
