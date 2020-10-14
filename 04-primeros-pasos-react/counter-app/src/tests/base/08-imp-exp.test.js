@@ -5,7 +5,7 @@ describe('Pruebas en funciones de Héroes', () => {
     
     test('Debe de retornar un héroe por ID', () => {
         
-        const idTest = 10;
+        const idTest = 1;
         const id = 1;
         const heroe = getHeroeById( id );
 
