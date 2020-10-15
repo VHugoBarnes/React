@@ -15,10 +15,11 @@ import React from 'react';
 import CounterApp from '../CounterApp';
 
  describe('Pruebas en <CounterApp />', () => {
+     let wrapper = shallow( <CounterApp /> );
+
+     beforeEach(() => {wrapper = shallow( <CounterApp /> );});
     
     test('Debe mostrar <CounterApp /> correctamente con una snapshot', () => {
-        const wrapper = shallow( <CounterApp /> );
-        
         expect( wrapper ).toMatchSnapshot();
     });
 
@@ -32,6 +33,20 @@ import CounterApp from '../CounterApp';
         expect(valorEsperado).toBe('100');
 
     });
+    
+    test('Debe de incrementar con el botón +1', () => {
+        wrapper.find('button').at(0).simulate('click');
+        const counterText = wrapper.find('h2').text();
         
+        expect(counterText).toBe('11');
+    });
+
+    test('Debe de decrementar con el botón -1', () => {
+        wrapper.find('button').at(2).simulate('click');
+        const counterText = wrapper.find('h2').text();
+        
+        expect(counterText).toBe('9');
+    });
+    
  });
  
