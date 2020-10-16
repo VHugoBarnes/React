@@ -47,6 +47,25 @@ import CounterApp from '../CounterApp';
         
         expect(counterText).toBe('9');
     });
+
+    test('Debe de colocar al valor por defecto', () => {
+        // Se establece un valor inicial
+        const wrapper = shallow( <CounterApp value={ 105 } />);
+
+        // Simulamos dar click dos veces al botón de +
+        wrapper.find('button').at(0).simulate('click');
+        wrapper.find('button').at(0).simulate('click');
+        // console.log(wrapper.find('h2').text());
+
+        // Simulamos dar click al botón de reset
+        wrapper.find('button').at(1).simulate('click');
+        // console.log(wrapper.find('h2').text());
+
+        const counterText = wrapper.find('h2').text();
+
+        expect(counterText).toBe('105');
+
+    })
     
  });
  
