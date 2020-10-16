@@ -1,7 +1,7 @@
 
 * {
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 1.3rem;
+  font-size: 1rem;
   background-color: #e4d8f2;
   color: #4d4d4d;
 }
@@ -11,9 +11,21 @@ body {
 }
 
 h2 {
-  font-size: 1.6rem;
+  font-size: 3rem;
 }
 
 hr {
   border-top: 1px solid #300f40;
+}
+
+li {
+  font-size: 1.4rem;
+  padding: 0.4rem 0.2rem;
+}
+
+input {
+  color: #28202b;
+  font-size: 1.4rem;
+  width: 100%;
+  border-style: double;
 }
