@@ -2,8 +2,8 @@
 * {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1rem;
-  background-color: #e4d8f2;
-  color: #4d4d4d;
+  background: linear-gradient(90deg, rgba(152,147,236,1) 0%, rgba(166,127,245,1) 49%, rgba(249,116,248,1) 100%);
+  color: #151a1c;
 }
 
 body {
@@ -24,8 +24,47 @@ li {
 }
 
 input {
-  color: #28202b;
   font-size: 1.4rem;
   width: 100%;
-  border-style: double;
+  border-style: solid;
+  border-color: #222729;
+}
+
+::placeholder {
+  color: #343738;
+}
+
+.card-grid {
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+}
+
+.card {
+  
+  align-content: center;
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(46,9,121,1) 49%, rgba(255,0,254,1) 100%);
+  border: 1px solid gray;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  overflow: hidden;
+
+}
+
+.card p {
+  
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(46,9,121,1) 49%, rgba(255,0,254,1) 100%);
+  color: white;
+  font-weight: 600;
+  padding: 5px;
+  text-align: center;
+
+}
+
+.card img {
+  max-height: 170px;
+  border-radius: 3px;
 }
