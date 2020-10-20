@@ -20,7 +20,25 @@
     
     test('Debe mostrar el componente correctamente', () => {
         expect(wrapper).toMatchSnapshot();
-    })
+    });
+
+    test('Debe de tener un párrafo con el title', () => {
+        const p = wrapper.find('p');
+        expect( p.text().trim() ).toBe( title );
+    });
+
+    test('Debe tener la imagen igual al url y alt de los props', () => {
+        const img = wrapper.find('img');
+        //    console.log( img.props() );
+        expect( img.prop( 'src' ) ).toBe( url );
+        expect( img.prop( 'alt' ) ).toBe( title );
+    });
+    
+    test('El <div> debe de tener la clase animate__fadeInLeft', () => {
+        const div = wrapper.find('div');
+
+        expect(div.prop('className').includes('animate__fadeInLeft')).toBe(true);
+    });
     
  }); 
  
