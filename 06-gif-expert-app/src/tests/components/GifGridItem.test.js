@@ -12,9 +12,11 @@
 
  describe('Pruebas en el componente <GifGridItem />', () => {
 
-    let wrapper = shallow( <GifGridItem /> );
+     const title = 'Un titulo';
+     const url = 'http://localhost/algo.jpg';
+     let wrapper = shallow( <GifGridItem title={title} url={url}/> );
 
-    beforeEach( () => { wrapper = shallow( <GifGridItem /> ) } );
+    beforeEach( () => { wrapper = shallow( <GifGridItem title={title} url={url}/> ) } );
     
     test('Debe mostrar el componente correctamente', () => {
         expect(wrapper).toMatchSnapshot();
