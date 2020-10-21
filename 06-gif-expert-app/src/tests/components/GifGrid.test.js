@@ -4,6 +4,7 @@ import React from 'react';
 import { GifGrid } from '../../components/GifGrid';
 import { useFetchGifs } from '../../hooks/useFetchGifs';
 
+// Simulamos ejecutar el useFetchGifs ??????
 jest.mock('../../hooks/useFetchGifs');
 
 describe('Pruebas en <GifGrid />', () => {
@@ -21,6 +22,8 @@ describe('Pruebas en <GifGrid />', () => {
         expect( wrapper ).toMatchSnapshot();
     });
     
+    // Esta prueba sirve para verificar la existencia del componente
+    // en el cuerpo del documento
     test('Debe de mostrar items cuando se cargan imágenes', () => {
         const gifs = [{
             id: 'ABC',
