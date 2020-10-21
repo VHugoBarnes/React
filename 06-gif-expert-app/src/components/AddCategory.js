@@ -13,7 +13,7 @@ export const AddCategory = ({ setCategories }) => {
 
     const handleSubmit = ( e ) => {
         e.preventDefault(); // previene que se cargue toda la página
-        // console.log('Submit hecho');
+        console.log('Submit hecho');
         if(inputValue.trim().length >= 1){
             setCategories( cats => [inputValue, ...cats] );
             setInputValue('');
