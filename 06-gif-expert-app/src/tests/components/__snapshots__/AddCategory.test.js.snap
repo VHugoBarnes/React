@@ -4,6 +4,7 @@ exports[`Pruebas en el componente <AddCategory /> El componente debe de renderiz
 <form
   onSubmit={[Function]}
 >
+  <p />
   <input
     onChange={[Function]}
     placeholder="Buscar..."
