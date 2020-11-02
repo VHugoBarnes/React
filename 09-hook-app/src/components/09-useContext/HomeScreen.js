@@ -3,13 +3,14 @@ import { UserContext } from './UserContext';
 
 export const HomeScreen = () => {
 
-    const userContext = useContext(UserContext);
-    console.log(userContext);
+    const { user } = useContext(UserContext);
+    console.log(user);
 
     return (
         <div>
-            <h1 className="mt-3 ml-3">HomeScreen</h1>
+            <h1>HomeScreen</h1>
             <hr/>
+            <pre>{ JSON.stringify(user, null, 4) }</pre>
         </div>
     );
 };
