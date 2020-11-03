@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import React from 'react';
-import { useCounter } from '../../hooks/useCounter';
 import { renderHook, act } from '@testing-library/react-hooks';
+import { useCounter } from '../../hooks/useCounter';
 
 describe('Pruebas en el customHook useCounter', () => {
     
