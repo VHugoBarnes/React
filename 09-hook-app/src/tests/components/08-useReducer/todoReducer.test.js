@@ -30,4 +30,31 @@ describe('Pruebas en el todoReducer', () => {
         expect( state ).toEqual( [...demoTodos, newToDo] );
     });
     
+    test('Debe de borrar un ToDo', () => {
+        const action = {
+            type: 'delete',
+            payload: 2,
+        };
+
+        const state = todoReducer(demoTodos, action);
+
+        // Si se borró el elemento, entonces sólo debe de 
+        // haber un elemento en el array
+        expect( state.length ).toBe( 1 );
+        expect( state[0].id ).toBe(1);
+    });
+    
+    test('Debe de hacer el TOGGLE del ToDo', () => {
+        const action = {
+            type: 'toggle',
+            payload: 2,
+        };
+        const state = todoReducer(demoTodos, action);
+
+        // Verificamos el valor de la propiedad 'done' del ToDo
+        // Debe de estar en 'true'
+        expect( state[1].done ).toBeTruthy();
+        expect( state[0] ).toEqual(demoTodos[0]);
+    });
+    
 });
