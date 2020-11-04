@@ -1,7 +1,7 @@
 export const demoTodos = [{
     id: 1,
     desc: 'Aprender React',
-    done: false,
+    done: true,
 },
 {
     id: 2,
