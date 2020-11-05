@@ -1,9 +1,9 @@
 import React from 'react';
 import '@testing-library/jest-dom';
 import { shallow } from 'enzyme';
+import { demoTodos } from '../../fixtures/demoTodos';
 
 import { TodoList } from '../../../components/08-useReducer/TodoList';
-import { demoTodos } from '../../fixtures/demoTodos';
 
 
 describe('Pruebas en <TodoList />', () => {
