@@ -1,10 +1,22 @@
 import React from 'react';
 
-export const LoginScreen = () => {
+export const LoginScreen = ({ history }) => {
+
+    const handleLogin = () => {
+        // Reemplaza en la historia la página por la ruta especificadag
+        history.replace('/');
+    };
+
     return (
-        <>
-            <h1>Login Screen</h1>
-            
-        </>
+        <div className="container mt-5">
+            <h1>Login</h1>
+            <hr/>
+            <button 
+                className="btn btn-primary"
+                onClick={ handleLogin }
+            >
+                Login
+            </button>
+        </div>
     );
 };
