@@ -3,7 +3,7 @@ import React from 'react';
 export const LoginScreen = ({ history }) => {
 
     const handleLogin = () => {
-        // Reemplaza en la historia la página por la ruta especificadag
+        // Reemplaza en la historia la página por la ruta especificada
         history.replace('/');
     };
 
