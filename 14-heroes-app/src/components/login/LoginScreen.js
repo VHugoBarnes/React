@@ -5,8 +5,10 @@ import { types } from '../../types/types';
 export const LoginScreen = ({ history }) => {
 
     const { dispatch } = useContext(AuthContext);
-
+    
     const handleLogin = () => {
+
+        const nextPath = localStorage.getItem('lastPath') || '/';
         // Reemplaza en la historia la página por la ruta especificada
         // history.replace('/');
         dispatch({
@@ -15,7 +17,7 @@ export const LoginScreen = ({ history }) => {
                 name: 'Víctor'
             }
         })
-        history.replace('/');
+        history.replace(nextPath);
     };
 
     return (
