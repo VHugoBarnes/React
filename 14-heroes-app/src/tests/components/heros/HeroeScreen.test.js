@@ -69,15 +69,17 @@ describe('Pruebas en el componente <HeroeScreen/>', () => {
     });
    
     test('Debe de llamar al redirect si el hero no existe', () => {
+
         const wrapper = mount(
             <MemoryRouter initialEntries={['/hero/marvel-spider1111']}>
-                <Route path="/hero/:heroId" 
+                <Route exact path="/hero/:heroId" 
                 component={(props) => <HeroeScreen history={ historyMock } />}
                 />
             </MemoryRouter>
         );
-
+        
         expect( wrapper.text() ).toBe('');
+        // expect( wrapper.find('Redirect').exists() ).toBe( true );
     });
     
 });

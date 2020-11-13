@@ -8,6 +8,7 @@ export const HeroeScreen = ({ history }) => {
     const hero = useMemo(() => getHeroeById(heroId), [heroId]);
 
     if(!hero){
+        console.log('Hero does not exists 1');
         return <Redirect to="/"/>
     }
 
