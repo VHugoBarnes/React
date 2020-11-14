@@ -41,6 +41,7 @@ export const LoginScreen = () => {
                 </div>
                 <Link 
                     to="/auth/register"
+                    className="link"
                 >
                     Create new account
                 </Link>
