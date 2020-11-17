@@ -1,13 +1,22 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { login } from '../../actions/auth';
+import { login, startLoginEmailPassword } from '../../actions/auth';
 import { useForm } from '../../hooks/useForm';
 
 export const LoginScreen = () => {
 
-    // Con este hook podemos hacer un dispatch donde nos encontremos
-    // obvio siempre y cuando nos encontremos dentro de la app.
+    /**
+     * Con este hook podemos hacer un dispatch donde nos encontremos
+     * obvio siempre y cuando nos encontremos dentro de la app.
+     * 
+     * Sacado de la documentación oficial (https://react-redux.js.org/api/hooks#usedispatch):
+     * Este hook retorna una referencia de la función `dispatch` del store de Redux
+     * 
+     * Esto quiere decir que se toma referencia de la función dispatch del store que a su vez
+     * está 'linkeado' con el reducer que hicimos (authReducer), que no es más que un 
+     * reducer común y corriente.
+     */
     const dispatch = useDispatch();
 
     const [values, handleInputChange, reset] = useForm({
@@ -26,7 +35,7 @@ export const LoginScreen = () => {
          *      payload: {uid, displayName}
          * }
          */
-        dispatch( login(12345, 'Hugo') );
+        dispatch( startLoginEmailPassword(email, password) );
     }
 
     return (
