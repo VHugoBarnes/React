@@ -1,18 +1,56 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useForm } from '../../hooks/useForm';
 
 export const RegisterScreen = () => {
+
+    /**
+     *  {
+     *      name: 'Víctor',
+     *      email: 'hugo@mail.com',
+     *      password1: '123456',
+     *      password2: '123456',
+     * }
+     * 
+     * vamos a usar el useForm para obtener información del formulario.
+     * 
+     * const handleRegister = (e) => {console.log(objetoRegistro)}
+     *  */
+
+    // Inicializando nuestro hook para manejar formularios
+    const [values, handleInputChange, reset] = useForm({
+        username: 'Víctor',
+        email: 'hugo@mail.com',
+        password: '123456',
+        confirmPassword: '123456',
+    });
+
+    // Desestructuramos el objeto values que regresa el `useForm`
+    const { username, email, password, confirmPassword } = values;
+    // Procedemos a mandarlo como value dentro de los input.
+
+    // Handler para manejar el registro
+    // DE MOMENTO: imprimir en consola los values de los input
+    const handleRegister = ( e ) => {
+        // Prevenimos el comportamiento por defecto al hacer submit
+        e.preventDefault();
+        // Imprimimos en consola los valores
+        console.log(values);
+    }
+
     return (
         <>
             <h3 className="auth__title">Register</h3>
             
-            <form>
+            <form onSubmit={ handleRegister }>
                 <input
                     type="text"
                     placeholder="Username"
                     name="username"
                     className="auth__input"
                     autoComplete="off"
+                    value={ username }
+                    onChange={ handleInputChange }
                 />
                 <input
                     type="text"
@@ -20,18 +58,24 @@ export const RegisterScreen = () => {
                     name="email"
                     className="auth__input"
                     autoComplete="off"
+                    value={ email }
+                    onChange={ handleInputChange }
                 />
                 <input
                     type="password"
                     placeholder="Password"
                     name="password"
                     className="auth__input"
+                    value={ password }
+                    onChange={ handleInputChange }
                 />
                 <input
                     type="password"
                     placeholder="Confirm Password"
-                    name="confirm-password"
+                    name="confirmPassword"
                     className="auth__input"
+                    value={ confirmPassword }
+                    onChange={ handleInputChange }
                 />
                 <button
                     type="submit"
