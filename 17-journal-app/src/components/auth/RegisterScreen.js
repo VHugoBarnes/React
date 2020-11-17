@@ -5,24 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useForm } from '../../hooks/useForm';
 import { removeError, setError } from '../../actions/ui';
+import { startRegisterWithEmailPasswordName } from '../../actions/auth';
 
 export const RegisterScreen = () => {
 
     const dispatch = useDispatch();
     const { msgError } = useSelector( state => state.ui);
-
-    /**
-     *  {
-     *      name: 'Víctor',
-     *      email: 'hugo@mail.com',
-     *      password1: '123456',
-     *      password2: '123456',
-     * }
-     * 
-     * vamos a usar el useForm para obtener información del formulario.
-     * 
-     * const handleRegister = (e) => {console.log(objetoRegistro)}
-     *  */
 
     // Inicializando nuestro hook para manejar formularios
     const [values, handleInputChange] = useForm({
@@ -43,7 +31,7 @@ export const RegisterScreen = () => {
         e.preventDefault();
         
         if( isFormValid() ){
-            console.log('Formulario correcto');
+            dispatch(startRegisterWithEmailPasswordName(username, email, password));
         }
     }
 
