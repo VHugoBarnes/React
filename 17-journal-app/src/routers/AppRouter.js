@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { 
-    Redirect, 
-    Route, 
+    Redirect,
     BrowserRouter as Router, 
     Switch 
 } from 'react-router-dom';
@@ -11,6 +10,8 @@ import { JournalScreen } from '../components/journal/JournalScreen';
 import { AuthRouter } from './AuthRouter';
 import { firebase } from '../firebase/firebaseConfig';
 import { login } from '../actions/auth';
+import { PublicRoute } from './PublicRoute';
+import { PrivateRoute } from './PrivateRoute';
 
 export const AppRouter = () => {
 
@@ -50,8 +51,29 @@ export const AppRouter = () => {
         <Router>
             <div>
                 <Switch>
-                    <Route path="/auth" component={ AuthRouter }/>
-                    <Route exact path="/" component={ JournalScreen }/>
+                    {/* <Route path="/auth" component={ () => {
+                        (!isLoggedIn)
+                            ? (<AuthRouter/>)
+                            : (<Redirect to="/"/>)
+                    }}/>
+                    <Route exact path="/" component={ () =>{
+                        (isLoggedIn)
+                            ? (<JournalScreen/>)
+                            : (<Redirect to ="/auth/login"/>)
+                    }}/>
+                    <Redirect to="/auth/login"/> */}
+                    <PublicRoute
+                        path="/auth/login"
+                        component={ AuthRouter }
+                        isAuthenticated={ isLoggedIn }
+                    />
+                    <PrivateRoute
+                        exact
+                        path="/"
+                        component={ JournalScreen }
+                        isAuthenticated={ isLoggedIn }
+                    />
+                    {/* This should be a 404 page */}
                     <Redirect to="/auth/login"/>
                 </Switch>
             </div>
