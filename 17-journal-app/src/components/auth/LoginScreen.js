@@ -21,7 +21,7 @@ export const LoginScreen = () => {
      * reducer común y corriente.
      */
     const dispatch = useDispatch();
-    const { msgError } = useSelector( state => state.ui);
+    const { loading } = useSelector( state => state.ui);
 
     const [values, handleInputChange] = useForm({
         email: 'hugo@mail.com',
@@ -76,6 +76,7 @@ export const LoginScreen = () => {
                     type="submit"
                     className="btn btn-primary btn-block"
                     onSubmit={handleEmailLogin}
+                    disabled={ loading }
                 >
                     Login
                 </button>

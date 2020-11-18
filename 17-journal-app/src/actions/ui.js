@@ -5,6 +5,14 @@ export const setError = ( err ) => ({
     payload: err
 });
 
-export const removeError = ( ) => ({
+export const removeError = () => ({
     type: types.uiRemoveError,
+});
+
+export const startLoading = () => ({
+    type: types.uiStartLoading
+});
+
+export const finishLoading = () => ({
+    type: types.uiFinishLoading
 });
