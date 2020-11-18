@@ -23,15 +23,21 @@ It's a simple project. First you register with your e-mail or login if you alrea
 
 🍴 Fork the repo with:
 
-`git clone https://github.com/VHugoBarnes/React.git`
+```bash
+git clone https://github.com/VHugoBarnes/React.git
+```
 
 Then run:
 
-`npm install`
+```bash
+npm install
+```
 
 To run the project use:
 
-`npm start`
+```bash
+npm start
+```
 
 ### Requirements 
 - Node 12
