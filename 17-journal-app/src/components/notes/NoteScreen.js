@@ -22,7 +22,7 @@ export const NoteScreen = () => {
                 <div className="notes__image">
                     <img 
                         src="https://c.files.bbci.co.uk/92F7/production/_101232673_angry.jpg"
-                        alt="image"
+                        alt="image1"
                     />
                 </div>
             </div>
