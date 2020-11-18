@@ -1,7 +1,10 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { login, startGoogleLogin, startLoginEmailPassword } from '../../actions/auth';
+import validator from 'validator';
+
+import { startGoogleLogin, startLoginEmailPassword } from '../../actions/auth';
+import { removeError, setError } from '../../actions/ui';
 import { useForm } from '../../hooks/useForm';
 
 export const LoginScreen = () => {
@@ -18,9 +21,10 @@ export const LoginScreen = () => {
      * reducer común y corriente.
      */
     const dispatch = useDispatch();
+    const { msgError } = useSelector( state => state.ui);
 
-    const [values, handleInputChange, reset] = useForm({
-        email: 'victor@gmail.com',
+    const [values, handleInputChange] = useForm({
+        email: 'hugo@mail.com',
         password: '123456',
     });
 
@@ -41,6 +45,10 @@ export const LoginScreen = () => {
     const handleGoogleLogin = () => {
         dispatch( startGoogleLogin() );
     }
+
+    const handleEmailLogin = () => {
+        dispatch(startLoginEmailPassword(email, password));
+    };
 
     return (
         <>
@@ -67,6 +75,7 @@ export const LoginScreen = () => {
                 <button
                     type="submit"
                     className="btn btn-primary btn-block"
+                    onSubmit={handleEmailLogin}
                 >
                     Login
                 </button>
