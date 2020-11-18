@@ -63,7 +63,7 @@ export const AppRouter = () => {
                     }}/>
                     <Redirect to="/auth/login"/> */}
                     <PublicRoute
-                        path="/auth/login"
+                        path="/auth"
                         component={ AuthRouter }
                         isAuthenticated={ isLoggedIn }
                     />
