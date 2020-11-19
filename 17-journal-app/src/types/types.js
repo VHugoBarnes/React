@@ -9,4 +9,13 @@ export const types = {
     uiStartLoading: '[UI] Start Loading',
     uiFinishLoading: '[UI] Finish Loading',
 
+    // Types para el journal
+    notesAddNew: '[Notes] New Note',
+    notesActive: '[Notes] Set Active Note',
+    notesLoad: '[Notes] Load Notes',
+    notesUpdate: '[Notes] Update note',
+    notesFileUrl: '[Notes] Updated image url',
+    notesDelete: '[Notes] Delete note',
+    notesLogoutCleaning: '[Notes] Logout Cleaning'
+
 };
