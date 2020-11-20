@@ -1,22 +1,29 @@
 import React, { useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../hooks/useForm';
 import { NotesAppBar } from './NotesAppBar';
+import { activeNote } from '../../actions/notes';
 
 export const NoteScreen = () => {
-    const {active:activeNote} = useSelector(state => state.notes);
-    const [values, handleInputChange, reset] = useForm(activeNote);
+    const {active} = useSelector(state => state.notes);
+    const [values, handleInputChange, reset] = useForm(active);
+
+    const dispatch = useDispatch();
     
     const { body, title, url } = values;
 
-    const activeId = useRef(activeNote.id);
+    const activeId = useRef(active.id);
 
     useEffect(() => {
-        if(activeNote.id !== activeId.current){
-            reset(activeNote);
-            activeId.current = activeNote.id;
+        if(active.id !== activeId.current){
+            reset(active);
+            activeId.current = active.id;
         }
-    }, [activeNote, reset]);
+    }, [active, reset]);
+
+    useEffect(() =>{
+        dispatch(activeNote(values.id, {...values}));
+    },[values,dispatch]);
 
     return (
         <div className="notes__main-content">
@@ -29,6 +36,7 @@ export const NoteScreen = () => {
                     autoComplete="off"
                     value={ title }
                     onChange={ handleInputChange }
+                    name="title"
                 />
 
                 <textarea 
@@ -37,6 +45,7 @@ export const NoteScreen = () => {
                     autoComplete="off"
                     value={ body }
                     onChange={ handleInputChange }
+                    name="body"
                 >
                 </textarea>
                 {

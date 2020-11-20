@@ -39,3 +39,21 @@ export const setNotes = (notes) => ({
     type: types.notesLoad,
     payload: notes,
 })
+
+export const startSaveNote = ( note ) => {
+    return async(dispatch, getState) => {
+        // Sacamos del store el reducer auth y su valor uid.
+        const { uid } = getState().auth;
+
+        if(!note.url) {
+            delete note.url;
+        }
+
+        // Extraemos la nota (una copia) a una variable
+        const noteToFirestore = {...note};
+        // Se elimina el id porque no se puee actualizar
+        delete noteToFirestore.id;
+
+        await db.doc(`${uid}/journal/notes/${note.id}`).update(noteToFirestore);
+    }
+}
