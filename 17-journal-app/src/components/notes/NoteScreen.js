@@ -52,7 +52,7 @@ export const NoteScreen = () => {
                     (url) &&
                     <div className="notes__image">
                     <img 
-                        src="https://c.files.bbci.co.uk/92F7/production/_101232673_angry.jpg"
+                        src={url}
                         alt="image1"
                     />
                     </div>
