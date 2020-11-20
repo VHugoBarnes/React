@@ -12,8 +12,7 @@ import { firebase } from '../firebase/firebaseConfig';
 import { login } from '../actions/auth';
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
-import { loadNotes } from '../helpers/loadNotes';
-import { setNotes } from '../actions/notes';
+import { startLoadingNotes } from '../actions/notes';
 
 export const AppRouter = () => {
 
@@ -30,15 +29,14 @@ export const AppRouter = () => {
         // a si está autenticado el usuario. Si es así, 
         // y si se encuentra el usuario, se dispara el dispatch
         // para hacer login.
-        firebase.auth().onAuthStateChanged( async(user) => {
+        firebase.auth().onAuthStateChanged( (user) => {
             // IMPORTANTE RECORDAR: La sintaxis '?' se refiere a si
             // el valor de la variable no es undefined, procede a obtener
             // el valor después del punto.
             if(user?.uid) {
                 dispatch( login(user.uid, user.displayName) );
                 setIsLoggedIn( true );
-                const notes = await loadNotes( user.uid );
-                dispatch(setNotes(notes));
+                dispatch(startLoadingNotes(user.uid));
             } else {
                 setIsLoggedIn( false );
             }
@@ -55,17 +53,6 @@ export const AppRouter = () => {
         <Router>
             <div>
                 <Switch>
-                    {/* <Route path="/auth" component={ () => {
-                        (!isLoggedIn)
-                            ? (<AuthRouter/>)
-                            : (<Redirect to="/"/>)
-                    }}/>
-                    <Route exact path="/" component={ () =>{
-                        (isLoggedIn)
-                            ? (<JournalScreen/>)
-                            : (<Redirect to ="/auth/login"/>)
-                    }}/>
-                    <Redirect to="/auth/login"/> */}
                     <PublicRoute
                         path="/auth"
                         component={ AuthRouter }
