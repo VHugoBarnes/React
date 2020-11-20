@@ -12,6 +12,8 @@ import { firebase } from '../firebase/firebaseConfig';
 import { login } from '../actions/auth';
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
+import { loadNotes } from '../helpers/loadNotes';
+import { setNotes } from '../actions/notes';
 
 export const AppRouter = () => {
 
@@ -28,13 +30,15 @@ export const AppRouter = () => {
         // a si está autenticado el usuario. Si es así, 
         // y si se encuentra el usuario, se dispara el dispatch
         // para hacer login.
-        firebase.auth().onAuthStateChanged( (user) => {
+        firebase.auth().onAuthStateChanged( async(user) => {
             // IMPORTANTE RECORDAR: La sintaxis '?' se refiere a si
             // el valor de la variable no es undefined, procede a obtener
             // el valor después del punto.
             if(user?.uid) {
                 dispatch( login(user.uid, user.displayName) );
                 setIsLoggedIn( true );
+                const notes = await loadNotes( user.uid );
+                dispatch(setNotes(notes));
             } else {
                 setIsLoggedIn( false );
             }
