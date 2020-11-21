@@ -10,7 +10,7 @@ export const JournalScreen = () => {
     const {active} = notes; // Por defecto es null
 
     return (
-        <div className="journal__main-content">
+        <div className="journal__main-content animate__animated animate__fadeIn animate__faster">
             <Sidebar />
 
             <main>
