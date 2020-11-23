@@ -1,19 +1,35 @@
+import cloudinary from 'cloudinary';
 import { fileUpload } from '../../helpers/fileUpload';
+
+// Configuración de nuestra cuenta
+cloudinary.config({ 
+    cloud_name: 'dcswawnum', 
+    api_key: '451823518514662', 
+    api_secret: 'G4ULFAeMm06Eol5gJWtPSbq32NI' 
+});
 
 describe('Pruebas en fileUpload', () => {
 
-    jest.setTimeout(20000);
+    jest.setTimeout(30000);
    
-    test('Debe de cargar un archivo y retornar un URL', async() => {
+    //              done hace que se espere hasta que se llame v
+    test('debe de cargar un archivo y retornar el URL', async() => {
+
         const resp = await fetch('https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png');
-        // Blob para almacenar la imagen
         const blob = await resp.blob();
 
         const file = new File([blob], 'foto.png');
-        const url = await fileUpload(file);
+        const url = await fileUpload( file );
+
+        expect( typeof url ).toBe('string');
+
+        // Borrar imagen por ID
+        const segments = url.split('/');
+        const imageId = segments[ segments.length - 1 ].replace('.png','');
+
+        await cloudinary.v2.api.delete_resources( imageId, {}, ()=> {console.log('');});
         
-        expect(typeof url).toBe('string');
-    });
+    })
 
     test('Debe de retornar un error', async() => {
 
