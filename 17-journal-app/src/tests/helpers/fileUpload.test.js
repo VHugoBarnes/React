@@ -29,7 +29,7 @@ describe('Pruebas en fileUpload', () => {
 
         await cloudinary.v2.api.delete_resources( imageId, {}, ()=> {console.log('');});
         
-    })
+    });
 
     test('Debe de retornar un error', async() => {
 
