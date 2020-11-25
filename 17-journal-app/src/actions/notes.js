@@ -19,6 +19,7 @@ export const startNewNote = () => {
             date: new Date().getTime(),
         }
         // Llamamos a un path en firestore para guardar la información en una colección
+        // Debe de estar autenticado para realizar la acción
         const doc = await db.collection(`${uid}/journal/notes`).add( newNote );
         dispatch( activeNote(doc.id, newNote) );
 
