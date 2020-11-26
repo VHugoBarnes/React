@@ -3,8 +3,16 @@ import configureStore from 'redux-mock-store'; //ES6 modules
 import thunk from 'redux-thunk';
 
 import { db } from "../../firebase/firebaseConfig";
-import { startLoadingNotes, startNewNote, startSaveNote } from '../../actions/notes';
+import { startLoadingNotes, startNewNote, startSaveNote, startUploading } from '../../actions/notes';
 import { types } from '../../types/types';
+import { fileUpload } from '../../helpers/fileUpload';
+
+jest.mock('../../helpers/fileUpload', () => ({
+    fileUpload: jest.fn(() => {
+        return 'https://hola-mundo.com/cosa.jpg';
+        // return Promise.resolve('https://hola-mundo.com/cosa.jpg');
+    })
+}));
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
@@ -12,6 +20,13 @@ const mockStore = configureStore(middlewares);
 const initState = {
     auth: {
         uid: 'TESTING'
+    },
+    notes: {
+        active: {
+            id: 'yNa8XGOUu20DvhTTZnyS',
+            title: 'Hola',
+            body: 'Mundo',
+        }
     }
 };
 // El estado del store en este instante
@@ -24,11 +39,7 @@ module.exports = {
 describe('Pruebas en notes - Action', () => {
 
     beforeEach( () =>{
-        store = mockStore({
-            auth: {
-                uid: 'TESTING'
-            }
-        })
+        store = mockStore(initState);
     });
    
     test('Debe de crear una nueva nota startNewNote', async() => {
@@ -95,6 +106,14 @@ describe('Pruebas en notes - Action', () => {
         const docRef = await db.doc(`/TESTING/journal/notes/${ note.id }`).get();
 
         expect(docRef.data().title).toBe(note.title);
+    });
+    
+    test('startUploading debe de actualizar el URL del entry', async() => {
+        const file = new File([],'foto.jpg');
+        await store.dispatch(startUploading(file));
+
+        const docRef = await db.doc('/TESTING/journal/notes/yNa8XGOUu20DvhTTZnyS').get()
+        expect( docRef.data().url ).toBe('https://hola-mundo.com/cosa.jpg');
     });
     
 });

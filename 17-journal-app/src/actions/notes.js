@@ -92,8 +92,9 @@ export const startUploading = (file) => {
             title:'Uploading Image...', 
             text: 'Please wait', 
             allowOutsideClick: false, 
-            willOpen: () => {Swal.showLoading()},
-            showConfirmButton: false
+            onBeforeOpen: () => {
+                Swal.showLoading();
+            }
         });
 
         const fileUrl = await fileUpload(file);
