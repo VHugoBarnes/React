@@ -3,22 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/react": "^11.1.2",
-    "@testing-library/user-event": "^12.2.2",
-    "firebase": "^8.0.2",
-    "moment": "^2.29.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "firebase": "^7.14.5",
+    "moment": "^2.26.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-redux": "^7.2.2",
+    "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.0",
+    "react-scripts": "3.4.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "sweetalert2": "^10.10.1",
-    "validator": "^13.1.17",
-    "web-vitals": "^0.2.4"
+    "sweetalert2": "^9.13.2",
+    "validator": "^13.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -27,10 +26,7 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [
@@ -45,10 +41,10 @@
     ]
   },
   "devDependencies": {
-    "cloudinary": "^1.23.0",
+    "cloudinary": "^1.21.0",
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.5",
-    "enzyme-to-json": "^3.6.1",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "enzyme-to-json": "^3.5.0",
     "redux-mock-store": "^1.5.4"
   }
 }

@@ -45,11 +45,8 @@ export const addNewNote = (id, note) => ({
 
 export const startLoadingNotes = (uid) => {
     return async( dispatch ) => {
-        console.log('a');
         const notes = await loadNotes( uid );
-        console.log('b');
         dispatch(setNotes(notes));
-        console.log('c');
     }
 }
 
