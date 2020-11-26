@@ -74,9 +74,7 @@ describe('Pruebas en notes - Action', () => {
     
     test('startLoadingNotes debe cargar las notas', async() => {
        await store.dispatch( startLoadingNotes('TESTING') );
-       console.log('Hola');
        const actions = store.getActions();
-       console.log('Mundo');
 
         expect( actions[0] ).toEqual({
             type: types.notesLoad,
