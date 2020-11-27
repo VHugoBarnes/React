@@ -22,8 +22,8 @@ export const LoginScreen = () => {
     const { loading } = useSelector( state => state.ui);
 
     const [values, handleInputChange] = useForm({
-        email: 'hugo@mail.com',
-        password: '123456',
+        email: '',
+        password: '',
     });
 
     const { email, password } = values;
@@ -72,7 +72,7 @@ export const LoginScreen = () => {
                 />
                 <button
                     type="submit"
-                    className="btn btn-primary btn-block"
+                    className="btn btn-primary btn-block login-btn"
                     onSubmit={handleEmailLogin}
                     disabled={ loading }
                 >

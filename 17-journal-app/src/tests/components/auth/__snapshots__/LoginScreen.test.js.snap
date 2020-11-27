@@ -19,7 +19,7 @@ exports[`Pruebas en el componente LoginScreen Debe mostrarse correctamente 1`] =
       onChange={[Function]}
       placeholder="Email"
       type="text"
-      value="hugo@mail.com"
+      value=""
     />
     <input
       className="auth__input"
@@ -27,10 +27,10 @@ exports[`Pruebas en el componente LoginScreen Debe mostrarse correctamente 1`] =
       onChange={[Function]}
       placeholder="Password"
       type="password"
-      value="123456"
+      value=""
     />
     <button
-      className="btn btn-primary btn-block"
+      className="btn btn-primary btn-block login-btn"
       disabled={false}
       onSubmit={[Function]}
       type="submit"
