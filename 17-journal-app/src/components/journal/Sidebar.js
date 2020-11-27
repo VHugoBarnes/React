@@ -13,7 +13,6 @@ export const Sidebar = () => {
     const { name } = auth;
 
     const handleLogout = () => {
-        console.log('a');
         dispatch(startLogout());
     }
 
