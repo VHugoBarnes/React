@@ -25,7 +25,10 @@ const nowplus1 = moment(now).add(1, 'hours');
 
 export const CalendarModal = () => {
 
+    // Redux
+    // Para hacer dispatch de acciones
     const dispatch = useDispatch();
+    // Para obtener datos del store
     const { modalOpen } = useSelector(state => state.ui);
 
     const [dateStart, setDateStart] = useState(now.toDate());

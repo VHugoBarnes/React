@@ -10,6 +10,8 @@ import { messages } from '../../helpers/calendar-messages-esp';
 import { CalendarEvent } from './CalendarEvent';
 import { CalendarModal } from './CalendarModal';
 import { uiOpenModal } from '../../actions/ui';
+import { eventSetActive } from '../../actions/events';
+import { AddNewFab } from '../ui/AddNewFab';
 
 moment.locale('es');
 const localizer = momentLocalizer(moment); // or globalizeLocalizer
@@ -41,7 +43,7 @@ export const CalendarScreen = () => {
     }
 
     const onSelectEvent = (e) => {
-        console.log(e);
+        dispatch(eventSetActive(e));
     }
 
     const onViewChange = (e) => {
@@ -82,6 +84,7 @@ export const CalendarScreen = () => {
                 }}
             />
             <CalendarModal/>
+            <AddNewFab/>
         </div>
     )
 }
