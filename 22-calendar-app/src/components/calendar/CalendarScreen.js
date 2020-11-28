@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Calendar, momentLocalizer} from 'react-big-calendar';
 import moment from 'moment';
 import 'moment/locale/es';
@@ -6,21 +6,41 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 import { Navbar } from '../ui/Navbar';
 import { messages } from '../../helpers/calendar-messages-esp';
+import { CalendarEvent } from './CalendarEvent';
 
 moment.locale('es');
 const localizer = momentLocalizer(moment); // or globalizeLocalizer
+
 const myEventsList = [{
     title: 'Cumpleaños de Keko',
     start: moment().toDate(),    // new Date()
     end: moment().add(2, 'hours').toDate(),
     bgcolor: '#fafafa',
     notes: 'Comprar el pastel',
+    user: {
+        _id: '123',
+        name: 'Víctor'
+    }
 }];
 
 export const CalendarScreen = () => {
 
+    const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month');
+
+    const onDoubleClick = (e) => {
+        console.log(e);
+    }
+
+    const onSelectEvent = (e) => {
+        console.log(e);
+    }
+
+    const onViewChange = (e) => {
+        setLastView(e);
+        localStorage.setItem('lastView', e);
+    }
+
     const eventStyleGetter = ( event, start, end, isSelected ) => {
-        console.log(event, start, end, isSelected);
         const style = {
             backgroundColor: '#367cf7',
             borderRadius: '0px',
@@ -44,6 +64,13 @@ export const CalendarScreen = () => {
                 endAccessor="end"
                 messages={messages}
                 eventPropGetter={ eventStyleGetter }
+                onDoubleClickEvent={onDoubleClick}
+                onSelectEvent={onSelectEvent}
+                onView={onViewChange}
+                view={lastView}
+                components={{
+                    event: CalendarEvent
+                }}
             />  
         </div>
     )
