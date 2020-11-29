@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {Calendar, momentLocalizer} from 'react-big-calendar';
 import moment from 'moment';
 import 'moment/locale/es';
@@ -16,23 +16,24 @@ import { AddNewFab } from '../ui/AddNewFab';
 moment.locale('es');
 const localizer = momentLocalizer(moment); // or globalizeLocalizer
 
-const myEventsList = [{
-    title: 'Cumpleaños de Keko',
-    start: moment().toDate(),    // new Date()
-    end: moment().add(2, 'hours').toDate(),
-    bgcolor: '#fafafa',
-    notes: 'Comprar el pastel',
-    user: {
-        _id: '123',
-        name: 'Víctor'
-    }
-}];
+// const myEventsList = [{
+//     title: 'Cumpleaños de Keko',
+//     start: moment().toDate(),    // new Date()
+//     end: moment().add(2, 'hours').toDate(),
+//     bgcolor: '#fafafa',
+//     notes: 'Comprar el pastel',
+//     user: {
+//         _id: '123',
+//         name: 'Víctor'
+//     }
+// }];
 
 export const CalendarScreen = () => {
 
     // Redux
     // Para hacer dispatch de acciones
     const dispatch = useDispatch();
+    const { events } = useSelector(state => state.calendar);
 
     // Guardamos en el localStorage la última vista visitada, si no hay nada, usamos month
     const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month');
@@ -44,7 +45,6 @@ export const CalendarScreen = () => {
 
     const onSelectEvent = (e) => {
         dispatch(eventSetActive(e));
-        dispatch(uiOpenModal());
     }
 
     const onViewChange = (e) => {
@@ -71,7 +71,7 @@ export const CalendarScreen = () => {
             <Navbar/>
             <Calendar
                 localizer={localizer}
-                events={myEventsList}
+                events={ events }
                 startAccessor="start"
                 endAccessor="end"
                 messages={messages}
