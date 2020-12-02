@@ -1,3 +1,8 @@
+/**
+ * Rutas de usuarios / auth
+ * host + /api/auth
+ */
+
 const express = require('express');
 require('dotenv').config();
 
@@ -8,11 +13,8 @@ const app = express();
 app.use(express.static('public'));
 
 // Rutas
-// app.get('/', (req, res) => {
-//     res.json({
-//         ok: true
-//     })
-// });
+app.use('/api/auth', require('./routes/auth')); // Todo lo que el archivo vaya exportar, lo habilitará en la ruta
+// TODO: CRUD: Eventos
 
 // Escuchar peticiones
 app.listen(process.env.PORT, () => {
