@@ -28,6 +28,8 @@ const validarJWT = (req, res = response, next) => {
             process.env.SECRET_JWT_SEED 
         );
 
+        // Modificamos el request para que cualquier petición en la cual
+        // haya pasado el JWT disponga del uid y del name facilmente.
         req.uid = uid;
         req.name = name;
 
