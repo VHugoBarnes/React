@@ -16,17 +16,18 @@ const {
 const router = Router();
 
 // Todas tienen que tener validación de JWT
+router.use( validarJWT );
 
 // Obtener eventos
-router.get('/', validarJWT, getEvent);
+router.get('/', getEvent);
 
 // Crear un evento
-router.post('/', validarJWT, createEvent);
+router.post('/', createEvent);
 
 // Actualizar evento
-router.put('/:id', validarJWT, updateEvent);
+router.put('/:id', updateEvent);
 
 // Borrar evento
-router.delete('/:id', validarJWT, deleteEvent);
+router.delete('/:id', deleteEvent);
 
 module.exports = router;
