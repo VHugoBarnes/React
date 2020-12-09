@@ -14,6 +14,10 @@ const getEvent = ( req, res = response ) => {
 
 // Insertar un nuevo evento en la base de datos
 const createEvent = ( req, res = response ) => {
+
+    // Verificar que tenga el evento
+    console.log(req.body);
+
     res.status(201).json({
         ok: true,
         msg: 'createEvent'
