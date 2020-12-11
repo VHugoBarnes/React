@@ -4,23 +4,31 @@ const { Schema, model } = require('mongoose');
 const EventoSchema = Schema({
     title: {
         type: String,
-        require: true
+        required: true
     },
     notes: {
         type: String
     },
     start: {
         type: Date,
-        require: true
+        required: true
     },
     end: {
         type: Date,
-        require: true
+        required: true
     },
     user: {
         type: Schema.Types.ObjectId,
-        ref: 'Usuario'
+        ref: 'Usuario',
+        required: true
     }
 });
+
+// Para la serialización del objeto a la base de datos
+EventoSchema.method('toJSON', function(){
+    const { __v, _id, ...object } = this.toObject(); // deja fuera a __v
+    object.id = _id; // reemplaza _id por id
+    return object;
+})
 
 module.exports = model('Evento', EventoSchema);
