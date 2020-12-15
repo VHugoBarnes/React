@@ -44,11 +44,55 @@ const createEvent = async( req, res = response ) => {
 }
 
 // Actualizar un evento de la base de datos
-const updateEvent = ( req, res = response ) => {
-    res.status(200).json({
-        ok: true,
-        msg: 'updateEvent'
-    });
+const updateEvent = async( req, res = response ) => {
+
+    const eventoId = req.params.id;
+    const uid = req.uid;
+
+    try {
+
+        // Obtenemos el documento
+        const evento = await Evento.findById( eventoId );
+
+        // Validar si el evento existe
+        if ( !evento ) {
+            res.status(404).json({
+                ok: false,
+                msg: 'Evento no exite por ese Id'
+            });
+        }
+
+        // Validar si la persona que edita el evento también lo creo
+        if ( evento.user.toString() !== uid ) {
+            return res.status(401).json({
+                ok: false,
+                msg: 'No tiene privilegio de editar este evento'
+            });
+        }
+
+        // Si llegó hasta acá es porque el evento existe y porque es la persona que lo creó
+        const nuevoEvento = {
+            ...req.body,
+            user: uid
+        }
+
+        // Actualizamos el registro
+        // Las opciones que colocamos son para pasar el nuevo registro
+        const eventoActualizado = await Evento.findByIdAndUpdate( eventoId, nuevoEvento, {new: true} );
+
+        res.json({
+            ok: true,
+            evento: eventoActualizado
+        });
+        
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        });
+    }
+
 }
 
 // Eliminar un evento de la base de datos
