@@ -6,10 +6,13 @@ const Evento = require('../models/Evento');
  */
 
 // Obtener los eventos de la base de datos
-const getEvent = ( req, res = response ) => {
+const getEvent = async( req, res = response ) => {
+
+    const eventos = await Evento.find().populate('user', 'name');
+
     res.status(200).json({
         ok: true,
-        msg: 'getEvent'
+        eventos
     });
 }
 
