@@ -6,6 +6,10 @@ import './login.css';
 
 export const LoginScreen = () => {
 
+    // Hook útil para manejar formularios,
+    // podemos obtener los valores y controlar qué hacer
+    // cuando se ingresen caracteres, como verificar si es valido un
+    // mail.
     const [ formLoginValues, handleLoginInputChange] = useForm({
         lEmail: 'keko@mail.com',
         lPassword: '123456',
@@ -15,6 +19,11 @@ export const LoginScreen = () => {
 
     const dispatch = useDispatch();
 
+    /**
+     * Función para manejar los eventos a realizar cuando se pulse 'Iniciar sesión'
+     * 
+     * @param {event} e el evento que se genera al hacer submit del formulario
+     */
     const handleLogin = ( e ) => {
         e.preventDefault();
 

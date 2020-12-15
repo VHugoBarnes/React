@@ -1,13 +1,29 @@
 import { fetchSinToken } from "../helpers/fetch";
 import { types } from "../types/types";
 
+/**
+ * Acción asíncrona que hace una petición al backend
+ * para iniciar sesión con los datos mandados por parámetro.
+ * 
+ * Ocupa thunk, por eso retorna una función (asíncrona).
+ * 
+ * @param {string} email el correo pasado del formulario
+ * @param {string} password la contraseña pasada por el formulario
+ */
 export const startLogin = ( email, password ) => {
     return async( dispatch ) => {
         
+        // Llamada a la API
         const resp = await fetchSinToken( 'auth', { email, password }, 'POST' );
+
+        // ToDo: try catch para errores
+        // La respuesta de la API
         const body = await resp.json();
 
+        // La API manda un objeto con la propiedad 'ok'
         if ( body.ok ) {
+            // Se almacena en el localstorage el JWT generado.
+            // Como no es información sensible lo podemos guardar ahí sin problems ;)
             localStorage.setItem('token', body.token);
             localStorage.setItem('token-init-date', new Date().getTime());
 
@@ -21,6 +37,12 @@ export const startLogin = ( email, password ) => {
     }
 }
 
+/**
+ * Acción síncrona para hacer un login en la web.
+ * Básicamente lo que hace es guardar en el store el usuario pasado por param.
+ * 
+ * @param {object} user El objeto que contiene la información del usuario para almacenarlo en el store
+ */
 const login = ( user ) => ({
     type: types.authLogin,
     payload: user
