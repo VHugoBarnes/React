@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { fetchSinToken } from "../helpers/fetch";
+import { fetchConToken, fetchSinToken } from "../helpers/fetch";
 import { types } from "../types/types";
 
 /**
@@ -64,6 +64,35 @@ export const startRegister = ( email, password, name ) => {
         }
     }
 }
+
+export const startChecking = () => {
+    return async( dispatch ) => {
+        // Llamada a la API
+        const resp = await fetchConToken( 'auth/renew' );
+
+        // La respuesta de la API
+        const body = await resp.json();
+        
+        // La API manda un objeto con la propiedad 'ok'
+        if ( body.ok ) {
+            // Se almacena en el localstorage el JWT generado.
+            // Como no es información sensible lo podemos guardar ahí sin problems ;)
+            localStorage.setItem('token', body.token);
+            localStorage.setItem('token-init-date', new Date().getTime());
+
+            // Guardar en el store
+            dispatch( login({
+                uid: body.uid,
+                body: body.name
+            }) )
+        } else { // En caso de errores :o
+            Swal.fire('Error', body.msg, 'error');
+            dispatch(checkingFinish());
+        }
+    }
+}
+
+const checkingFinish = () => ({ type: types.authCheckingFinish });
 
 /**
  * Acción síncrona para hacer un login en la web.
