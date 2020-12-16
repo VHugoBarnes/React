@@ -86,7 +86,6 @@ export const startChecking = () => {
                 body: body.name
             }) )
         } else { // En caso de errores :o
-            Swal.fire('Error', body.msg, 'error');
             dispatch(checkingFinish());
         }
     }
