@@ -30,7 +30,7 @@ export const startLogin = ( email, password ) => {
             // Guardar en el store
             dispatch( login({
                 uid: body.uid,
-                body: body.name
+                name: body.name
             }) )
         } else { // En caso de errores :o
             Swal.fire('Error', body.msg, 'error');
@@ -57,7 +57,7 @@ export const startRegister = ( email, password, name ) => {
             // Guardar en el store
             dispatch( login({
                 uid: body.uid,
-                body: body.name
+                name: body.name
             }) )
         } else { // En caso de errores :o
             Swal.fire('Error', body.msg, 'error');
@@ -83,7 +83,7 @@ export const startChecking = () => {
             // Guardar en el store
             dispatch( login({
                 uid: body.uid,
-                body: body.name
+                name: body.name
             }) )
         } else { // En caso de errores :o
             dispatch(checkingFinish());
@@ -103,3 +103,12 @@ const login = ( user ) => ({
     type: types.authLogin,
     payload: user
 });
+
+export const startLogout = () => {
+    return ( dispatch ) => {
+        localStorage.clear();
+        dispatch( logout() );
+    }
+}
+
+const logout = () => ({ type: types.authLogout });
