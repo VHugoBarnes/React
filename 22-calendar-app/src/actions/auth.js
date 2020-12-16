@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { fetchSinToken } from "../helpers/fetch";
 import { types } from "../types/types";
 
@@ -16,10 +17,9 @@ export const startLogin = ( email, password ) => {
         // Llamada a la API
         const resp = await fetchSinToken( 'auth', { email, password }, 'POST' );
 
-        // ToDo: try catch para errores
         // La respuesta de la API
         const body = await resp.json();
-
+        
         // La API manda un objeto con la propiedad 'ok'
         if ( body.ok ) {
             // Se almacena en el localstorage el JWT generado.
@@ -32,8 +32,36 @@ export const startLogin = ( email, password ) => {
                 uid: body.uid,
                 body: body.name
             }) )
+        } else { // En caso de errores :o
+            Swal.fire('Error', body.msg, 'error');
         }
 
+    }
+}
+
+export const startRegister = ( email, password, name ) => {
+    return async( dispatch ) => {
+        // Llamada a la API
+        const resp = await fetchSinToken( 'auth/new', { email, password, name }, 'POST' );
+
+        // La respuesta de la API
+        const body = await resp.json();
+        
+        // La API manda un objeto con la propiedad 'ok'
+        if ( body.ok ) {
+            // Se almacena en el localstorage el JWT generado.
+            // Como no es información sensible lo podemos guardar ahí sin problems ;)
+            localStorage.setItem('token', body.token);
+            localStorage.setItem('token-init-date', new Date().getTime());
+
+            // Guardar en el store
+            dispatch( login({
+                uid: body.uid,
+                body: body.name
+            }) )
+        } else { // En caso de errores :o
+            Swal.fire('Error', body.msg, 'error');
+        }
     }
 }
 
