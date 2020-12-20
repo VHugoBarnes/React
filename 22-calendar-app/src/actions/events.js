@@ -1,6 +1,45 @@
+import { fetchConToken } from "../helpers/fetch";
 import { types } from "../types/types";
 
-export const eventAddNew = (event) => ({
+/**
+ * 
+ * Acción asíncrona que dispara una petición POST
+ * al servidor para guardar eventos en la base de datos.
+ * 
+ * @param {object} event objeto con los datos del evento
+ */
+export const eventStartAddNew = ( event ) => {
+    return async( dispatch, getState ) => {
+
+        // Obtenemos el uid y el name de redux.
+        const { uid, name } = getState().auth;
+        
+        try {
+            // Realizar petición POST al server
+            const resp = await fetchConToken('events', event, 'POST');
+            // Almacenamos en body el objeto que devuelve el server
+            const body = await resp.json();
+            
+            // Si se guardó correctamente:
+            if ( body.ok ) {
+                // Guardar en el store propiedades
+                // en event
+                event.id = body.evento.id;
+                event.user = {
+                    _id: uid,
+                    name: name
+                }
+                dispatch( eventAddNew( event ) );
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
+}
+
+const eventAddNew = (event) => ({
     type: types.eventAddNew,
     payload: event
 });
