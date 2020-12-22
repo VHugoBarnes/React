@@ -35,6 +35,7 @@ export const CalendarScreen = () => {
     // Para hacer dispatch de acciones
     const dispatch = useDispatch();
     const { events, activeEvent } = useSelector(state => state.calendar);
+    const { uid } = useSelector(state => state.auth);
 
     // Guardamos en el localStorage la última vista visitada, si no hay nada, usamos month
     const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'month');
@@ -62,8 +63,11 @@ export const CalendarScreen = () => {
     }
 
     const eventStyleGetter = ( event, start, end, isSelected ) => {
+
+
+
         const style = {
-            backgroundColor: '#367cf7',
+            backgroundColor: (uid === event.user._id) ? '#367cf7' : '#465660',
             borderRadius: '0px',
             opacity: 0.8,
             display: 'block',
