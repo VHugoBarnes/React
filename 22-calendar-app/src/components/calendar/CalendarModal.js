@@ -5,7 +5,7 @@ import DateTimePicker from 'react-datetime-picker';
 import moment from 'moment';
 import Swal from 'sweetalert2';
 import { uiCloseModal } from '../../actions/ui';
-import { eventStartAddNew, eventClearActiveEvent, eventUpdated } from '../../actions/events';
+import { eventStartAddNew, eventClearActiveEvent, eventStartUpdate } from '../../actions/events';
 
 const customStyles = {
     content : {
@@ -100,7 +100,7 @@ export const CalendarModal = () => {
         // null en activeEvent. Si seleccionamos un evento
         // significa que lo vamos a editar.
         if( activeEvent ){
-            dispatch( eventUpdated(formValues) );
+            dispatch( eventStartUpdate(formValues) );
         } else {
             dispatch( eventStartAddNew(formValues));
         }
