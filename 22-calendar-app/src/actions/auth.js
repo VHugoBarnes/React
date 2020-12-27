@@ -72,7 +72,6 @@ export const startChecking = () => {
 
         // La respuesta de la API
         const body = await resp.json();
-        
         // La API manda un objeto con la propiedad 'ok'
         if ( body.ok ) {
             // Se almacena en el localstorage el JWT generado.
