@@ -12,8 +12,8 @@ export const LoginScreen = () => {
     // cuando se ingresen caracteres, como verificar si es valido un
     // mail.
     const [ formLoginValues, handleLoginInputChange] = useForm({
-        lEmail: 'keko@mail.com',
-        lPassword: '123456',
+        lEmail: '',
+        lPassword: '',
     });
     const [ formRegisterValues, handleRegisterInputChange] = useForm({
         rName: 'Nicole',
